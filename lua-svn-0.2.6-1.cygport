@@ -1,0 +1,21 @@
+inherit lua
+
+DESCRIPTION="Lua Subversion bindings"
+HOMEPAGE="http://www.lua.inf.puc-rio.br/~sergio/luasvn/"
+SRC_URI="http://luaforge.net/frs/download.php/2670/${PN/-}-${PV}.tar.gz"
+SRC_DIR="${PN/-}-${PV}"
+
+src_compile() {
+	lndirs
+	cd ${B}/src
+	cygmake \
+		APR="$(apr-1-config --includes)" APR_UTIL="\$(APR)" \
+		LIBS="-lsvn_client-1 -lsvn_ra-1 -lsvn_repos-1 -lsvn_subr-1 -lapr-1 ${LUA_LIBS}"
+}
+
+src_install() {
+	exeinto ${LUA_LIBDIR}
+	doexe ${B}/src/svn.dll
+}
+
+HTMLDOCS="doc/*.html"

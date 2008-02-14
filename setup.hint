@@ -1,0 +1,5 @@
+category: Lua
+requires: cygwin lua libapr1 subversion
+sdesc: "Lua Subversion bindings"
+ldesc: "LuaSVN is a library that allows to use some Subversion (SVN) 
+facilities inside Lua programs."
